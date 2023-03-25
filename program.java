@@ -7,20 +7,6 @@ import java.util.*;
 /**
  * Anja Samsom HW 4 Programming
  * CS 224
- * 
- * 
- Sort-and-Count(L) {
-
-
- (rA, A)  Sort-and-Count(A);
- (rB, B)  Sort-and-Count(B);
- (r, L)  Merge-and-Count(A, B);
- return r = rA + rB + r and the sorted list L;
-}
- * 
- * 
- * 
- * 
  */
 public class program
 {
@@ -49,6 +35,7 @@ public class program
       L3.add(23);
       L3.add(12);
 
+      // 45 23 | 12
 
     sector arr = sort_and_count(L3);
     System.out.println("Inversion count: " + arr.inversions + ". Sorted array: " + arr.nums);
