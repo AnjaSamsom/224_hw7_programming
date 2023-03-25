@@ -28,14 +28,25 @@ public class program
 
    public static void main(String[]args)
    {
+      ArrayList<Integer> L1 = new ArrayList<Integer>(); 
+      L1.add(1);
+      L1.add(13);
+      L1.add(14);
+      L1.add(12);
+      L1.add(25);
+      L1.add(26);
+
+
+      // 45 23 12 34 10
       ArrayList<Integer> L2 = new ArrayList<Integer>(); 
-      L2.add(5);
-      L2.add(3);
+      L2.add(45);
+      L2.add(23);
+      L2.add(12);
+      L2.add(34);
+      L2.add(10);
 
 
-   
-      
-    sector arr = sort_and_count(L2);
+    sector arr = sort_and_count(L1);
     System.out.println("Inversion count: " + arr.inversions + ". Sorted array: " + arr.nums);
 
 
@@ -78,14 +89,6 @@ public class program
       // final list
       ArrayList<Integer> R = new ArrayList<Integer>();
 
-      System.out.println(A.get(0));
-      System.out.println(B.get(0));
-      System.out.println();
-
-
-
-
-      int i = 0;
       int inv = 0;
       while(A.size() !=0 || B.size() !=0)
       {
@@ -95,7 +98,6 @@ public class program
             {
                R.add(unit);
             }
-            System.out.println("1");
             sector secR = new sector(R, inv);
             return secR;
          }
@@ -106,8 +108,6 @@ public class program
                
                R.add(unit);
             }
-            System.out.println("2");
-            System.out.println(R);
 
             sector secR = new sector(R, inv);
             return secR;
@@ -115,24 +115,17 @@ public class program
 
          else
          {
-            if(A.get(i) < B.get(i))
+            if(A.get(0) < B.get(0))
             {
-               //System.out.println("added " + A.get(i));
-               R.add(A.remove(i));
-               System.out.println("3");
+               R.add(A.remove(0));
 
             }
-            else if(A.get(i) > B.get(i))
+            else if(A.get(0) > B.get(0))
             {
-               //System.out.println("added " + B.get(i));
-               R.add(B.remove(i));
-               System.out.println("4");
-               System.out.println(R);
+               R.add(B.remove(0));
                inv ++;
             }
-            i++;
          }
-
 
       }
 
