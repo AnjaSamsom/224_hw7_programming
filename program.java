@@ -37,7 +37,6 @@ public class program
       L1.add(26);
 
 
-      // 45 23 12 34 10
       ArrayList<Integer> L2 = new ArrayList<Integer>(); 
       L2.add(45);
       L2.add(23);
@@ -45,8 +44,13 @@ public class program
       L2.add(34);
       L2.add(10);
 
+      ArrayList<Integer> L3 = new ArrayList<Integer>(); 
+      L3.add(45);
+      L3.add(23);
+      L3.add(12);
 
-    sector arr = sort_and_count(L2);
+
+    sector arr = sort_and_count(L3);
     System.out.println("Inversion count: " + arr.inversions + ". Sorted array: " + arr.nums);
 
 
@@ -70,6 +74,8 @@ public class program
       ArrayList<Integer> B = new ArrayList<Integer>(L.subList(L.size()/2, L.size()));
 
 
+
+
       // (rA, A) Sort-and-Count(A);
       sector secA  = sort_and_count(A);
       
@@ -91,6 +97,7 @@ public class program
       // final list
       ArrayList<Integer> R = new ArrayList<Integer>();
 
+
       int inv = 0;
       while(A.size() !=0 || B.size() !=0)
       {
@@ -102,8 +109,11 @@ public class program
             }
             B.clear();
             sector secR = new sector(R, inv);
+
+
             return secR;
          }
+
          else if(B.size() == 0)
          {
             for(int unit : A)
@@ -113,6 +123,8 @@ public class program
             }
             A.clear();
             sector secR = new sector(R, inv);
+
+
             return secR;
          }
 
