@@ -98,6 +98,7 @@ public class program
             {
                R.add(unit);
             }
+            B.clear();
             sector secR = new sector(R, inv);
             return secR;
          }
@@ -108,7 +109,7 @@ public class program
                
                R.add(unit);
             }
-
+            A.clear();
             sector secR = new sector(R, inv);
             return secR;
          }
