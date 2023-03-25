@@ -10,9 +10,8 @@ import java.util.*;
  * 
  * 
  Sort-and-Count(L) {
- if list L has one element
- return 0 and the list L;
- Divide the list into two halves A and B;
+
+
  (rA, A)  Sort-and-Count(A);
  (rB, B)  Sort-and-Count(B);
  (r, L)  Merge-and-Count(A, B);
@@ -29,119 +28,115 @@ public class program
 
    public static void main(String[]args)
    {
-      int[] L1 = {1, 13, 14, 2, 25, 26};
-      int[] L2 = {7,8,9,6};
+      ArrayList<Integer> L2 = new ArrayList<Integer>(); 
+      L2.add(5);
+      L2.add(3);
+
+
    
       
     sector arr = sort_and_count(L2);
-    System.out.println("Inversion count: " + arr[0][0] + ". Sorted array: " + Arrays.toString(arr[1]));
+    System.out.println("Inversion count: " + arr.inversions + ". Sorted array: " + arr.nums);
 
 
 
       
    }
 
-   public static sector sort_and_count(int[] L)
+   public static sector sort_and_count(ArrayList<Integer> L)
    {
-      if(L.length == 1)
+      sector arr = new sector(L, 0);
+
+      //  if list L has one element
+      // return 0 and the list L;
+      if(L.size() == 1)
       {
-        arr[0][0] = 0;
-        arr[1] = L;
         return arr;
-      }
+      } 
 
-      int [][] A = new int [2][L.length/2];
-      A[1] = Arrays.copyOfRange(L, 0, L.length/2);
-      int [][] B = new int [2][L.length/2];
-      B[1] = Arrays.copyOfRange(L, L.length/2, L.length);
+      //  Divide the list into two halves A and B;
+      ArrayList<Integer> A = new ArrayList<Integer>(L.subList(0, L.size()/2));
+      ArrayList<Integer> B = new ArrayList<Integer>(L.subList(L.size()/2, L.size()));
 
 
-      A = sort_and_count(A[1]);
-      B = sort_and_count(B[1]);
-
-      //System.out.println("A");
-      //System.out.println(Arrays.toString(A[1]));
-
-  //    System.out.println("B");
-//      System.out.println(Arrays.toString(B[1]));
-
-      int arrR [][] = merge_and_count(A[1],B[1]);
-
-      int ra = A[0][0];
-      int rb = A[0][0];
-      int r = arrR[0][0];
-
-      arr[0][0] = ra+rb+r;
-      arr[1] = arrR[1];
+      // (rA, A) Sort-and-Count(A);
+      sector secA  = sort_and_count(A);
       
-      return arr;
+      // (rB, B) Sort-and-Count(B);
+      sector secB  = sort_and_count(B);
+
+      // (r, L) Merge-and-Count(A, B);\
+      sector secR  = merge_and_count(A, B);
+
+      //  return r = rA + rB + r and the sorted list L;
+      secR.inversions = secA.inversions + secB.inversions + secR.inversions;
+      return secR;
    }
 
-   public static int[][] merge_and_count(int[] A, int[] B)
+   public static sector merge_and_count(ArrayList<Integer> A, ArrayList<Integer> B)
    {
-      // make a queue for A and B
+      // final list
+      ArrayList<Integer> R = new ArrayList<Integer>();
 
-      LinkedList<Integer> qA = new LinkedList<Integer>();
-      for(int num : A)
-      {
-         qA.add(num);
-      }
+      System.out.println(A.get(0));
+      System.out.println(B.get(0));
+      System.out.println();
 
-      LinkedList<Integer> qB = new LinkedList<Integer>();
-      for(int num : B)
-      {
-         qB.add(num);
-      }      
 
+
+
+      int i = 0;
       int inv = 0;
-      int [][] arr  = new int[2][A.length + B.length];
-
-      LinkedList<Integer> R = new LinkedList<Integer>();
-
-      for(int i = 0; i<qA.size() && i<qB.size(); i++)
+      while(A.size() !=0 || B.size() !=0)
       {
-        // System.out.println("compare");
-
-         System.out.println(qA.get(i));
-         System.out.println(qB.get(i));
-         System.out.println();
-
-         if(qA.get(i) < qB.get(i))
+         if(A.size() == 0)
          {
-            System.out.println("added " + qA.get(i));
-            R.add(qA.remove(i));
-
-
+            for(int unit : B)
+            {
+               R.add(unit);
+            }
+            System.out.println("1");
+            sector secR = new sector(R, inv);
+            return secR;
          }
-         else if( qA.get(i) > qB.get(i))
+         else if(B.size() == 0)
          {
-            System.out.println("added " + qB.get(i));
-            R.add(qB.remove(i));
-            inv ++;
+            for(int unit : A)
+            {
+               
+               R.add(unit);
+            }
+            System.out.println("2");
+            System.out.println(R);
+
+            sector secR = new sector(R, inv);
+            return secR;
          }
+
+         else
+         {
+            if(A.get(i) < B.get(i))
+            {
+               //System.out.println("added " + A.get(i));
+               R.add(A.remove(i));
+               System.out.println("3");
+
+            }
+            else if(A.get(i) > B.get(i))
+            {
+               //System.out.println("added " + B.get(i));
+               R.add(B.remove(i));
+               System.out.println("4");
+               System.out.println(R);
+               inv ++;
+            }
+            i++;
+         }
+
+
       }
 
-      arr[0][0] = inv;
-
-
-
-      for(int unit : R)
-      {
-
-      }
-
-
-
-      System.out.println(Arrays(R));
-
-
-
-
-      return arr;
-
-
-
+      sector secR = new sector(R, inv);
+      return secR;
    }
-
-   
 }
