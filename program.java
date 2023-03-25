@@ -35,14 +35,10 @@ public class program
       L3.add(23);
       L3.add(12);
 
-      // 45 23 | 12
-
     sector arr = sort_and_count(L3);
+    
     System.out.println("Inversion count: " + arr.inversions + ". Sorted array: " + arr.nums);
 
-
-
-      
    }
 
    public static sector sort_and_count(ArrayList<Integer> L)
@@ -60,14 +56,13 @@ public class program
       ArrayList<Integer> A = new ArrayList<Integer>(L.subList(0, L.size()/2));
       ArrayList<Integer> B = new ArrayList<Integer>(L.subList(L.size()/2, L.size()));
 
-
-
-
       // (rA, A) Sort-and-Count(A);
       sector secA  = sort_and_count(A);
+
       
       // (rB, B) Sort-and-Count(B);
       sector secB  = sort_and_count(B);
+
 
       // (r, L) Merge-and-Count(A, B);\
       sector secR  = merge_and_count(A, B);
@@ -75,7 +70,6 @@ public class program
       //  return r = rA + rB + r and the sorted list L;
       secR.inversions = secA.inversions + secB.inversions + secR.inversions;
  
-
       return secR;
    }
 
@@ -83,7 +77,6 @@ public class program
    {
       // final list
       ArrayList<Integer> R = new ArrayList<Integer>();
-
 
       int inv = 0;
       while(A.size() !=0 || B.size() !=0)
@@ -97,6 +90,7 @@ public class program
             B.clear();
             sector secR = new sector(R, inv);
 
+            System.out.println("padme");
 
             return secR;
          }
@@ -107,9 +101,12 @@ public class program
             {
                
                R.add(unit);
+               System.out.println("amidala");
+
             }
             A.clear();
             sector secR = new sector(R, inv);
+            System.out.println("R: " + R);
 
 
             return secR;
@@ -124,9 +121,21 @@ public class program
             }
             else if(A.get(0) > B.get(0))
             {
+               System.out.println(B.size());
+
+               System.out.println("hello");
+               System.out.println("R: " + R);
+               System.out.println(A.get(0) + ", " + B.get(0));
                R.add(B.remove(0));
+               System.out.println("R: " + R);
+               System.out.println(B.size());
+
+               System.out.println("bye\n");
+
+
                // we are skipping through the rest of A
                inv =  inv + A.size();
+
             }
          }
 
