@@ -32,7 +32,7 @@ public class program
       L1.add(1);
       L1.add(13);
       L1.add(14);
-      L1.add(12);
+      L1.add(2);
       L1.add(25);
       L1.add(26);
 
@@ -81,6 +81,8 @@ public class program
 
       //  return r = rA + rB + r and the sorted list L;
       secR.inversions = secA.inversions + secB.inversions + secR.inversions;
+ 
+
       return secR;
    }
 
@@ -124,7 +126,8 @@ public class program
             else if(A.get(0) > B.get(0))
             {
                R.add(B.remove(0));
-               inv ++;
+               // we are skipping through the rest of A
+               inv =  inv + A.size();
             }
          }
 
