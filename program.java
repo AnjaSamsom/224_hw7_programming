@@ -35,7 +35,7 @@ public class program
       L3.add(23);
       L3.add(12);
 
-    sector arr = sort_and_count(L3);
+    sector arr = sort_and_count(L2);
     
     System.out.println("Inversion count: " + arr.inversions + ". Sorted array: " + arr.nums);
 
@@ -63,7 +63,6 @@ public class program
       // (rB, B) Sort-and-Count(B);
       sector secB  = sort_and_count(B);
 
-
       // (r, L) Merge-and-Count(A, B);\
       sector secR  = merge_and_count(A, B);
 
@@ -89,9 +88,6 @@ public class program
             }
             B.clear();
             sector secR = new sector(R, inv);
-
-            System.out.println("padme");
-
             return secR;
          }
 
@@ -99,16 +95,10 @@ public class program
          {
             for(int unit : A)
             {
-               
                R.add(unit);
-               System.out.println("amidala");
-
             }
             A.clear();
             sector secR = new sector(R, inv);
-            System.out.println("R: " + R);
-
-
             return secR;
          }
 
@@ -121,24 +111,11 @@ public class program
             }
             else if(A.get(0) > B.get(0))
             {
-               System.out.println(B.size());
-
-               System.out.println("hello");
-               System.out.println("R: " + R);
-               System.out.println(A.get(0) + ", " + B.get(0));
                R.add(B.remove(0));
-               System.out.println("R: " + R);
-               System.out.println(B.size());
-
-               System.out.println("bye\n");
-
-
                // we are skipping through the rest of A
                inv =  inv + A.size();
-
             }
          }
-
       }
 
       sector secR = new sector(R, inv);
