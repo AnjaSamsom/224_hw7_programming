@@ -1,17 +1,12 @@
 import java.util.*;
-import java.util.Queue;
 import java.util.*;
-
-
 
 /**
  * Anja Samsom HW 4 Programming
  * CS 224
  */
 public class program
-{
-   
-
+{  
    public static void main(String[]args)
    {
       ArrayList<Integer> L1 = new ArrayList<Integer>(); 
@@ -28,15 +23,9 @@ public class program
       L2.add(23);
       L2.add(12);
       L2.add(34);
-      L2.add(10);
-
-      ArrayList<Integer> L3 = new ArrayList<Integer>(); 
-      L3.add(45);
-      L3.add(23);
-      L3.add(12);
+      //L2.add(10);
 
     sector arr = sort_and_count(L2);
-    
     System.out.println("Inversion count: " + arr.inversions + ". Sorted array: " + arr.nums);
 
    }
@@ -63,7 +52,7 @@ public class program
       // (rB, B) Sort-and-Count(B);
       sector secB  = sort_and_count(B);
 
-      // (r, L) Merge-and-Count(A, B);\
+      // (r, L) Merge-and-Count(A, B);
       sector secR  = merge_and_count(A, B);
 
       //  return r = rA + rB + r and the sorted list L;
@@ -78,6 +67,46 @@ public class program
       ArrayList<Integer> R = new ArrayList<Integer>();
 
       int inv = 0;
+
+
+
+      int i = 0;
+      int j = 0;
+
+
+      while(i < A.size() && j < B.size())
+      {
+         if(A.get(0) < B.get(0))
+         {
+            R.add(A.remove(0));
+            i++;
+         }
+         else
+         {
+            R.add(B.remove(0));
+            j++;
+            inv =  inv + A.size();
+         }
+      }
+
+      while(A.size() != 0)
+      {
+         R.add(A.remove(0));
+      }
+
+      while(B.size() != 0)
+      {
+         R.add(B.remove(0));
+      }
+
+
+
+
+
+
+
+      /* 
+
       while(A.size() !=0 || B.size() !=0)
       {
          if(A.size() == 0)
@@ -116,7 +145,7 @@ public class program
                inv =  inv + A.size();
             }
          }
-      }
+      } */
 
       sector secR = new sector(R, inv);
       return secR;
