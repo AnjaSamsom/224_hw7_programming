@@ -2,7 +2,6 @@ import java.util.*;
 import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
-import java.lang.*;
 
 
 
@@ -51,16 +50,7 @@ public class program
          System.out.println("PROBLEM!!");
        }
 
-       String[] parts = line.split(":");
-
-
        return final_list;
-
-
-
-
-
-
    }
 
    public static sector sort_and_count(ArrayList<Integer> L)
