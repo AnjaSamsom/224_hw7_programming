@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.*;
 
 /**
  * Anja Samsom HW 4 Programming
@@ -23,7 +22,7 @@ public class program
       L2.add(23);
       L2.add(12);
       L2.add(34);
-      //L2.add(10);
+      L2.add(10);
 
     sector arr = sort_and_count(L2);
     System.out.println("Inversion count: " + arr.inversions + ". Sorted array: " + arr.nums);
@@ -45,6 +44,8 @@ public class program
       ArrayList<Integer> A = new ArrayList<Integer>(L.subList(0, L.size()/2));
       ArrayList<Integer> B = new ArrayList<Integer>(L.subList(L.size()/2, L.size()));
 
+
+
       // (rA, A) Sort-and-Count(A);
       sector secA  = sort_and_count(A);
 
@@ -53,7 +54,11 @@ public class program
       sector secB  = sort_and_count(B);
 
       // (r, L) Merge-and-Count(A, B);
-      sector secR  = merge_and_count(A, B);
+
+      sector secR  = merge_and_count(secA.nums, secB.nums);
+      //System.out.println(secR.nums+"\n \n");
+
+
 
       //  return r = rA + rB + r and the sorted list L;
       secR.inversions = secA.inversions + secB.inversions + secR.inversions;
@@ -67,46 +72,6 @@ public class program
       ArrayList<Integer> R = new ArrayList<Integer>();
 
       int inv = 0;
-
-
-
-      int i = 0;
-      int j = 0;
-
-
-      while(i < A.size() && j < B.size())
-      {
-         if(A.get(0) < B.get(0))
-         {
-            R.add(A.remove(0));
-            i++;
-         }
-         else
-         {
-            R.add(B.remove(0));
-            j++;
-            inv =  inv + A.size();
-         }
-      }
-
-      while(A.size() != 0)
-      {
-         R.add(A.remove(0));
-      }
-
-      while(B.size() != 0)
-      {
-         R.add(B.remove(0));
-      }
-
-
-
-
-
-
-
-      /* 
-
       while(A.size() !=0 || B.size() !=0)
       {
          if(A.size() == 0)
@@ -123,11 +88,12 @@ public class program
          else if(B.size() == 0)
          {
             for(int unit : A)
-            {
+            {               
                R.add(unit);
             }
             A.clear();
             sector secR = new sector(R, inv);
+
             return secR;
          }
 
@@ -141,13 +107,17 @@ public class program
             else if(A.get(0) > B.get(0))
             {
                R.add(B.remove(0));
+
                // we are skipping through the rest of A
                inv =  inv + A.size();
+
             }
          }
-      } */
+
+      }
 
       sector secR = new sector(R, inv);
       return secR;
    }
 }
+
