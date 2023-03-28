@@ -1,4 +1,10 @@
 import java.util.*;
+import java.io.File;
+import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.lang.*;
+
+
 
 /**
  * Anja Samsom HW 4 Programming
@@ -8,29 +14,58 @@ public class program
 {  
    public static void main(String[]args)
    {
-      ArrayList<Integer> L1 = new ArrayList<Integer>(); 
-      L1.add(1);
-      L1.add(13);
-      L1.add(14);
-      L1.add(2);
-      L1.add(25);
-      L1.add(26);
+
+      ArrayList<ArrayList<Integer>> my_list = from_file("input.txt");
+
+      for(ArrayList<Integer> num_list : my_list)
+      {
+         sector arr = sort_and_count(num_list);
+         System.out.println("Inversion count: " + arr.inversions + ". Sorted array: " + arr.nums);
+
+      }
+
+   }
+   public static ArrayList<ArrayList<Integer>> from_file(String input)
+   {
+      ArrayList<ArrayList<Integer>> final_list = new ArrayList<ArrayList<Integer>>();
+      String line = "";
+      try
+      {
+         File file  = new File ("C:\\Users\\anjav\\OneDrive - University of Vermont\\UVM\\2023 Spring\\CS 224\\224_hw7_programming\\"+ input);
+         Scanner sc = new Scanner(file);
+         while (sc.hasNext())
+         {
+
+            ArrayList<Integer> my_list = new ArrayList<Integer>();
+            line = sc.nextLine();
+            String parts[] = line.split(" ");
+            for(String number : parts)
+            {
+               my_list.add(Integer.parseInt(number));
+            }
+            final_list.add(my_list);
+         }
+      }
+
+      catch (FileNotFoundException e) {
+         System.out.println("PROBLEM!!");
+       }
+
+       String[] parts = line.split(":");
 
 
-      ArrayList<Integer> L2 = new ArrayList<Integer>(); 
-      L2.add(45);
-      L2.add(23);
-      L2.add(12);
-      L2.add(34);
-      L2.add(10);
+       return final_list;
 
-    sector arr = sort_and_count(L1);
-    System.out.println("Inversion count: " + arr.inversions + ". Sorted array: " + arr.nums);
+
+
+
+
 
    }
 
    public static sector sort_and_count(ArrayList<Integer> L)
    {
+      
       sector arr = new sector(L, 0);
 
       //  if list L has one element
