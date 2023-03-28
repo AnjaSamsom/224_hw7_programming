@@ -24,7 +24,7 @@ public class program
       L2.add(34);
       L2.add(10);
 
-    sector arr = sort_and_count(L2);
+    sector arr = sort_and_count(L1);
     System.out.println("Inversion count: " + arr.inversions + ". Sorted array: " + arr.nums);
 
    }
