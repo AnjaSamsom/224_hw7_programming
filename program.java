@@ -42,7 +42,7 @@ public class program
       String line = "";
       try
       {
-         File file  = new File ("C:\\Users\\anjav\\OneDrive - University of Vermont\\UVM\\2023 Spring\\CS 224\\224_hw7_programming\\"+ input);
+         File file  = new File (input);
          Scanner sc = new Scanner(file);
          while (sc.hasNext())
          {
