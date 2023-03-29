@@ -60,7 +60,7 @@ public class program
       }
 
       catch (FileNotFoundException e) {
-         System.out.println("PROBLEM!!");
+         System.out.println("PROBLEM!! Run again and make sure you have the correct file name!");
        }
 
        return final_list;
